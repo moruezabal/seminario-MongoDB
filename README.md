@@ -63,5 +63,9 @@ db.teams.insert(
 
 ~~~
 
+## Actividad N° 2
+
+
+
 
 
