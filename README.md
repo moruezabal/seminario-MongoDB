@@ -65,6 +65,41 @@ db.teams.insert(
 
 ## Actividad N° 2
 
+1. Crear una nueva base de datos de un sistema de streaming de video (ej. Netflix, Flow, Amazon Prime) que permita almacenar movies.
+~~~
+use v-streaming
+db.createCollection("movies")
+~~~
+2. Para cada movie, se debería guardar información como título
+(String), year (Number), rating (Number, entre 1.0 y 5.0), genre
+(String), description (String), actors (Array-String-), country
+(String), income (Number), duration (Number).
+~~~
+{title: "The Godfather", year: 1972, rating: 5.0, genre: "Drama", "Description: "An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.", actors: ["Marlon Brandon", "Al Pacino"], income: 150000000, duration: 175}
+~~~
+
+3. Agregar películas usando insert(), insertOne() & insertMany().
+
+~~~
+//Con insert()
+db.movies.insert({title: "The Godfather", year: 1972, rating: 5.0, genre: "Drama", Description: "An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.", actors: ["Marlon Brandon", "Al Pacino"], income: 150000000, duration: 175})
+
+//con insertOne() - Devuelve el ID
+db.movies.insertOne({title: "The Shawshank Redemption", year: 1994, rating: 4.8, genre: "Drama", Description: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", actors: ["Morgan Freeman", "Bob Gunton", "Tim Robbins"], income: 100000000, duration: 142})
+
+//con insertMany() - Devuelve los ID's insertados
+db.movies.insertMany([{title: "Gladiator", year: 2000, rating: 3.8, genre: "Action", Description: "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.", actors: ["Russel Crowe", "Joaquin Phoenix", "Connie Nielsen"], income: 70000000, duration: 155}, {title: "Braveheart", year: 1995, rating: 3.2, genre: "Biography", Description: "Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England.", actors: ["Mel Gison", "Sophie Marceau", "Patrick McGoohan"], income: 200000000, duration: 158}])
+
+~~~
+
+4. Actualizar películas agregando el field highlighted=true a aquellas
+con rating > 4.5.
+
+~~~
+db.movies.updateMany({rating: {$gte: 4.5}}, {$set :{highlighted : true}})
+~~~
+
+
 
 
 
